@@ -1170,7 +1170,7 @@ antd-mobile@^2.0.0:
     rmc-tabs "~1.2.0"
     rmc-tooltip "~1.0.0"
 
-antd@^3.0.0:
+antd@^3.0.0, antd@^3.9.3:
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/antd/-/antd-3.9.3.tgz#bc3e6a93478f4fcfb57f9e7f683c3ce590069ddb"
   dependencies:

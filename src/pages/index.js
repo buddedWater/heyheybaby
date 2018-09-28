@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'dva';
-import styles from './index.css';
+import styles from './index.less';
 import { Helmet } from 'react-helmet';
 import logo from '../assets/Orange.png';
+import Link from 'umi/link';
 
 function IndexPage() {
   return (    
@@ -16,6 +17,7 @@ function IndexPage() {
       <ul className={styles.list}>
         <li>Someone Must Shout That We Will Build The Pyramids.</li>
       </ul>
+      <Link to="/first" className={styles.nav}>Gooooooooooooo!</Link>
     </div>
   );
 }
