@@ -8,13 +8,22 @@
 		width: 100%;
 	}
 	.mask{
-		width: 100%;   
-	    height: 100%;
+		display: flex;
+		width: calc(~'100% - 24px');
+	    height: calc(~'100% - 20px');
 	    background-color: #fff;
-	    position: absolute;	
-	    left: 0;  
-	    top: 0; 
-	    z-index: -1; 
+	    position: absolute;
+	    left: 12px;
+	    top: 0;
+	    z-index: -1;
+	    .active_card{
+	    	align-self: center;
+		    display: inline-block;
+		    text-align: center;
+		    width: 100%;
+		    font-size: 30px;
+		    font-weight: 600;
+	    }
 	}
 	&:hover{
 		.mask{

@@ -4,8 +4,14 @@ import PropTypes from 'prop-types';
 import styles from './index.less';
 import { Row, Col } from 'antd';
 import TextScroll from 'react-textscroll';
+import { routerRedux } from 'dva/router';
 
-const First = ({ first }) => {
+const First = ({ first, dispatch }) => {
+
+  const toSecond = () => {
+    dispatch(routerRedux.push('/second'));
+  }
+
   return (    
     <Fragment>
       <Row>
@@ -15,10 +21,12 @@ const First = ({ first }) => {
       </Row>
       <Row gutter={24}>
       	{first.cardList.map((item, key)=>{
-      		return(
+      		return(            
       			<Col key={key} span={8} className={styles.single}>     				     				
       				<img alt={key} src={item.url}/>
-      				<div className={styles.mask}></div>
+              {item.name === "img5"?<div className={styles.mask} style={{backgroundColor:"#5F9EA0"}}>
+                  <span onClick={()=>toSecond()} className={styles.active_card}>GO!</span></div>:<div className={styles.mask}></div>               
+              }
       			</Col>
       		)
       	})}

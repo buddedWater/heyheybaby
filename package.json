@@ -9,8 +9,11 @@
   "dependencies": {
     "antd": "^3.9.3",
     "dva": "^2.4.0",
+    "rc-animate": "^2.5.4",
+    "rc-tween-one": "^2.2.10",
     "react-helmet": "^5.2.0",
     "react-textscroll": "^1.0.0",
+    "react-transition-group": "^2.5.0",
     "umi": "^1.0.0",
     "umi-plugin-dva": "^0.7.1"
   },
