@@ -18,11 +18,11 @@ const Second = ({ second, dispatch }) => {
 
   const renderItem = (item) => {
     return(
-      <List.Item key={item.key}>
-        <Row onClick={()=>showDetail(item)}>
-          <Col span={24}>{item.content}</Col>
-          <Col span={12}>{item.name}</Col>
-          <Col span={12} className={styles.date}>{item.date}</Col>
+      <List.Item>
+        <Row key={item.key} style={{width:'100%'}}>
+          <Col span={24} ><span className={styles.article_content}>{item.content}</span></Col>
+          <Col span={12}></Col>
+          <Col span={12} className={styles.article_title}><span onClick={()=>showDetail(item)}>{item.title}</span></Col>
         </Row>
       </List.Item>
     )    
@@ -71,7 +71,7 @@ const Second = ({ second, dispatch }) => {
             key="demo"
             type={['right', 'left']}
             ease={['easeOutQuart', 'easeInOutQuart']}>
-            {second.show?[<List {...listProps}/>]:detailContent()}           
+            {second.show?<List {...listProps}/>:detailContent()}           
           </QueueAnim>
         </Col> 
         <Col span={12} style={{padding:"30px 0"}}>

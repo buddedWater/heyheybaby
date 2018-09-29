@@ -3,21 +3,36 @@
 		.ant-list-split{
 			.ant-list-item{
 				&:hover{
-					background: #F0FFFF;
+					background: #FFF5EE;
 				};
 				&:last-child{
 					border-bottom: 1px solid #e8e8e8;
 				}
+				.ant-list-item-content-single{
+					width: 100%;
+				}			
 			}
 		}	
 		.ant-list * {
-		  color: #5F9EA0;
+		 // color: #5F9EA0;
 		}
 	}
-	.date{
-		font-weight: 600;
+	.article_content{
+		text-overflow: ellipsis;
+		overflow: hidden;
+		display: inline-block;
+		white-space: nowrap;
+		width: 100%;
+	}
+	.article_title{		
     padding-top: 10px;
     text-align: right;
+    padding-right: 10px;  
+    span{
+    	cursor: pointer;
+    	color: #FF8C00;
+    	font-weight: 600;
+    }
 	}
 	.back{
 		cursor: pointer;
