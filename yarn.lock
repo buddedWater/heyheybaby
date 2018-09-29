@@ -8108,6 +8108,14 @@ rc-progress@~2.2.2:
     babel-runtime "6.x"
     prop-types "^15.5.8"
 
+rc-queue-anim@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/rc-queue-anim/-/rc-queue-anim-1.6.6.tgz#eb8f278fc91c49330ccbb577e81515b235fee1ed"
+  dependencies:
+    babel-runtime "6.x"
+    prop-types "^15.6.0"
+    rc-tween-one "^2.2.8"
+
 rc-rate@~2.4.0:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/rc-rate/-/rc-rate-2.4.2.tgz#c097bfdba7a5783cec287c928b1461cc1621f836"
@@ -8280,7 +8288,7 @@ rc-trigger@^3.0.0-rc.2:
     rc-animate "^3.0.0-rc.1"
     rc-util "^4.4.0"
 
-rc-tween-one@^2.2.10:
+rc-tween-one@^2.2.10, rc-tween-one@^2.2.8:
   version "2.2.10"
   resolved "https://registry.yarnpkg.com/rc-tween-one/-/rc-tween-one-2.2.10.tgz#edbcbbaf52228d8077975997b9debd494aeb7f63"
   dependencies:
