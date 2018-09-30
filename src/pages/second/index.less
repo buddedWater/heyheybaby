@@ -1,6 +1,7 @@
 .second{
 	:global{
 		.ant-list-split{
+			min-height: 574px;
 			.ant-list-item{
 				&:hover{
 					background: #FFF5EE;
@@ -15,6 +16,12 @@
 		}	
 		.ant-list * {
 		 // color: #5F9EA0;
+		}
+	}
+	.theme_title{
+		h2{
+	    color: #FF8C00;
+	    font-weight: 600;
 		}
 	}
 	.article_content{
@@ -34,24 +41,46 @@
     	font-weight: 600;
     }
 	}
-	.back{
-		cursor: pointer;
-		font-size: 16px;
-		color: #FF8C00;
+	.back_col{
+		padding: 20px 0px;
+		.back{
+			cursor: pointer;
+			font-size: 16px;
+			color: #FF8C00;
+			:global{
+				.anticon-left{
+					margin-right: 5px;
+				}			
+			};
+		}
+	}	
+	.detail_content{
+		overflow-y: auto;
+		overflow-x: hidden;
+    height: 574px;
+    .title{
+			padding: 20px 0;
+			h3{
+				font-weight: 600;
+			}
+		}
+		.text_col{
+			padding: 3px 0;
+		}
+	}	
+	.pagination{
+		text-align: right;
+		padding-bottom: 20px;
+		padding-top: 8px;
 		:global{
-			.anticon-left{
-				margin-right: 5px;
-			}			
+			.ant-pagination-simple .ant-pagination-simple-pager input{
+				width: 30px;
+				padding: 0; 
+			}
 		};
 	}
-	.title{
-		padding: 20px 0;
-	}
-	.text_col{
-		padding: 3px 0;
-	}
 	.rotate_image{
-		padding: 30px 10px;
+		padding: 20px 10px;
 		text-align: right;
 		img{
 			width: 40px;

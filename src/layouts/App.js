@@ -25,7 +25,7 @@ const App = ({
       </Helmet>
 			<Header></Header>
 			<Content>
-				<Row>
+				<Row className={styles.content}>
 					<Col {...offset}></Col>
 					<Col {...content}>{ children }</Col>
 					<Col {...offset}></Col>
