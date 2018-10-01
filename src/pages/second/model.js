@@ -21,7 +21,7 @@ export default {
     show: true,
     activeRow: {},
     current: 1,
-    pageSize: 7,
+    pageSize: 10,
     total: 10,
     detailDistance: 1500,
     basicDistance: 0

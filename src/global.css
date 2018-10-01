@@ -1,15 +1,7 @@
 
 html, body, :global(#root) {
   height: 100%;
-  .fade-enter {
-	  opacity: 0;
-	  z-index: 1;
-	}
-
-	.fade-enter.fade-enter-active {
-	  opacity: 1;
-	  transition: opacity 250ms ease-in;
-	}
+  font-size: 12px;
 }
 
 
