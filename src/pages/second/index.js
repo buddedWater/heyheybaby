@@ -40,7 +40,7 @@ const Second = ({ second, dispatch }) => {
     return(
       <List.Item>
         <Row key={item.key} style={{width:'100%'}}>
-          <Col span={24} ><span className={styles.article_content}>{item.content}</span></Col>
+          <Col span={24} ><span className={styles.article_content}>{item.text.replace(/\s+/g,"")}</span></Col>
           <Col span={4}></Col>
           <Col span={20} className={styles.article_title} ><span onClick={()=>showDetail(item)}>{item.title}</span></Col>
         </Row>
@@ -51,15 +51,15 @@ const Second = ({ second, dispatch }) => {
   const detailContent = () => {
     return (
       <div>
-        {"content" in second.activeRow?<Row className={styles.detail_content}>
+        {"text" in second.activeRow?<Row className={styles.detail_content}>
           <Col span={24} className={styles.title}><h3>{second.activeRow.title}</h3></Col>       
           <QueueAnim className="demo-content"
             key="demo"
             type={['right', 'left']}
             ease={['easeOutQuart', 'easeInOutQuart']}>
-              {second.activeRow.content.trim().split(" ").map((item, key)=>{
-                return <Col className={styles.text_col} key={key} span={24} >{item}</Col>
-              })}                    
+              {second.activeRow.text.trim().split('\n').map((item, key)=>{
+                return <Col className={styles.text_col} key={key} span={24} >{item.trim()}</Col>
+              })}                
           </QueueAnim>
         </Row>:null}
       </div>     

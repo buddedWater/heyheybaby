@@ -15,8 +15,8 @@ const App = ({
   children, dispatch, app, loading, location,
 }) => {
 
-  const offset = location.pathname === "/" ? {xs:2, sm:4, md:4, lg:4, xl:6, xxl:7} : {xs:2, sm:2, md:2, lg:2, xl:2, xxl:1}
-  const content = location.pathname === "/" ? {xs:20, sm:16, md:16, lg:16, xl:12, xxl:10} : {xs:20, sm:14, md:12, lg:10, xl:9, xxl:8}
+  const offset = (location.pathname === "/" || location.pathname === "/owner" || location.pathname === "/operate") ? {xs:2, sm:4, md:4, lg:4, xl:5, xxl:6} : {xs:2, sm:2, md:2, lg:2, xl:2, xxl:1}
+  const content = (location.pathname === "/" || location.pathname === "/owner" || location.pathname === "/operate") ? {xs:20, sm:16, md:16, lg:16, xl:14, xxl:12} : {xs:20, sm:14, md:12, lg:10, xl:9, xxl:8}
 
 	return (
 		<Fragment>
@@ -26,9 +26,9 @@ const App = ({
       </Helmet>
 			<Header></Header>
 			<Content className={styles.content}>
-				<svg className="icon" aria-hidden="true">
+				{(location.pathname === "/" || location.pathname === "/owner") ? null : <svg className="icon" aria-hidden="true">
             <use xlinkHref="#icon-hey"></use>
-        </svg>
+        </svg>}
 				<Row>
 					<Col {...offset}></Col>
 					<Col {...content}>{ children }</Col>
