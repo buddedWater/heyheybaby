@@ -44,8 +44,9 @@ export default {
     *login({ payload }, { call, put }) {
       let data = yield call(service.userLogin, {...payload.fields})
       if(data.code === 1){
-        yield put({type:'updateState', payload:{user:payload.fields.name}})
+        //yield put({type:'updateState', payload:{user:payload.fields.name}})
         window.sessionStorage.setItem('token',JSON.stringify(data.token))
+        window.sessionStorage.setItem('user',JSON.stringify(payload.fields.name))
       }
       return data.code;
     },
