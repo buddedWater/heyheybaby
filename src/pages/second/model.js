@@ -9,8 +9,8 @@ export default {
     show: true,
     activeRow: {},
     current: 1,
-    pageSize: 10,
-    total: 10,
+    pageSize: 9,
+    total: 0,
     detailDistance: 1500,
     basicDistance: 0
   },

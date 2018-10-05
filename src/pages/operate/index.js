@@ -96,6 +96,7 @@ const Operate = ({ operate, dispatch }) => {
 
 Operate.propTypes = {
   operate: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect(({ operate }) => ({ operate }))(Operate);

@@ -37,6 +37,7 @@ const First = ({ first, dispatch }) => {
 
 First.propTypes = {
 	first: PropTypes.object,
+  dispatch: PropTypes.func
 };
 
 export default connect(({ first }) => ({ first }))(First);

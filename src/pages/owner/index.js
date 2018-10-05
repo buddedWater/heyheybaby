@@ -63,6 +63,8 @@ const Owner = ({ owner, dispatch, form }) => {
 
 Owner.propTypes = {
   owner: PropTypes.object,
+  dispatch: PropTypes.func,
+  form: PropTypes.object,
 };
 
 export default connect(({ owner }) => ({ owner }))(Form.create()(Owner));

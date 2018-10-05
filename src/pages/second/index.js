@@ -149,7 +149,7 @@ const Second = ({ second, dispatch }) => {
 
 Second.propTypes = {
 	second: PropTypes.object,
-  dispatch: PropTypes.func,
+  dispatch: PropTypes.func
 };
 
 export default connect(({ second }) => ({ second }))(Second);
