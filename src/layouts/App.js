@@ -40,8 +40,7 @@ const App = ({
           <Col {...content} className="navs">
             {location.pathname === "/operate"?
               <span className="user">{JSON.parse(window.sessionStorage.getItem('user'))}<Divider type="vertical"/><a href="javascript:;" onClick={()=>handleLogout()}>Log out</a></span>
-            :<span className="user"><Link to='/'>首页</Link><Divider type="vertical"/><Link to='/first'>1</Link><Divider type="vertical"/><Link to='/second'>2</Link><Divider type="vertical"/><Link to='/third'>3</Link><Divider type="vertical"/><Link to='/about'>关于</Link>
-            <Divider type="vertical"/><Link to='/owner'>登录</Link></span>}
+            :<span className="user"><Link to='/'>首页</Link><Divider type="vertical"/><Link to='/first'>1</Link><Divider type="vertical"/><Link to='/second'>2</Link><Divider type="vertical"/><Link to='/third'>3</Link><Divider type="vertical"/><Link to='/about'>关于</Link></span>}
           </Col>
         </Row>   
       </Header>

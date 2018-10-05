@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import PropTypes from 'prop-types';
 import styles from './index.less';
 import AddModal from './other/addModal';
-import { Row, Col, Tabs, Table, Divider, Button} from 'antd';
+import { Row, Col, Tabs, Table, Divider, Button, Popconfirm } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
@@ -17,7 +17,9 @@ const Operate = ({ operate, dispatch }) => {
     <span>
       <a href="javascript:;" onClick={()=>handleModify(record)}>修改</a>
       <Divider type="vertical" />
-      <a href="javascript:;" onClick={()=>handleDelete(record)}>删除</a>
+      <Popconfirm title="确认删除吗？" onConfirm={()=>handleDelete(record)}>
+        <a href="javascript:;">删除</a>
+      </Popconfirm>
     </span>
   )
 
