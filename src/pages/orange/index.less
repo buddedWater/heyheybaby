@@ -1,0 +1,37 @@
+.orange{
+  .btn{
+    text-align: right;
+    padding: 10px 0;
+    :global{
+      .anticon{
+        font-size: 20px;
+        color: #FFB6C1;
+        cursor: pointer;
+        &:hover{
+          color: #FFE4E1;
+        }
+      }
+    };
+  } 
+  .single_item{
+    img{
+      width: 100%;
+      cursor: pointer
+    }
+    .desc{
+      text-align: center;
+      margin: 10px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+:global{
+  .ant-modal-body{
+    padding: 0;
+    img{
+      width: 100%;
+    }
+  }
+};

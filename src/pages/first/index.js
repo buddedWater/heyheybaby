@@ -8,9 +8,10 @@ import { routerRedux } from 'dva/router';
 
 const First = ({ first, dispatch }) => {
 
-  const toSecond = () => {
-    dispatch(routerRedux.push('/second'));
+  const toAnother = (to) => {
+    dispatch(routerRedux.push(`/${to}`));
   }
+
 
   return (    
     <Fragment>
@@ -24,8 +25,8 @@ const First = ({ first, dispatch }) => {
       		return(            
       			<Col key={key} span={8} className={styles.single}>     				     				
       				<img alt={key} src={item.url}/>
-              {item.name === "img5"?<div className={styles.mask} style={{backgroundColor:"#5F9EA0"}}>
-                  <span onClick={()=>toSecond()} className={styles.active_card}>GO!</span></div>:<div className={styles.mask}></div>               
+              {"to" in item?<div className={styles.mask} style={{backgroundColor:"#5F9EA0"}}>
+                  <span onClick={()=>toAnother(item.to)} className={styles.active_card}>GO!</span></div>:<div className={styles.mask}></div>               
               }
       			</Col>
       		)
