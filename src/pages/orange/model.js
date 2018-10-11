@@ -1,4 +1,4 @@
-
+import * as service from './service'
 export default {
 
   namespace: 'orange',
@@ -34,11 +34,14 @@ export default {
       {url:"https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180630_wenyilu.jpg",title:"2018-06-30 文艺路上与父亲电话对谈23"},
       {url:'https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180907_zhaoze.jpg',title:"2018-09-07 在沼泽现场和BBF席地而坐24"},
     ],
+    records: [],
     swiperModel: true,
     modalVisible: false,
     showImageUrl: '',
-    page: 1,
-    pageSize: 10,
+    current: 0,
+    pageSize: 15,
+    total: 0,
+    hasMore: true,
   },
 
   subscriptions: {
@@ -51,11 +54,17 @@ export default {
       yield put({ type: 'save' });
     },
     *queryMore({ payload }, { call, put, select }) {
-      const { dataList } = yield select(_ => _.second)
-      let activeRow = dataList.find((item, key)=>{return item.Key === payload.activeKey})
-      if(activeRow){
-        yield put({type:'updateState',payload:{activeRow}})
-      }
+      const { pageSize, imgList } = yield select(_ => _.orange)
+      /*let data = yield call(service.getRecord, {current:payload.current, pageSize})
+      if(data.code === 1){
+        yield put({type:'updateState',payload:{dataList:data.list, total:data.total current:payload.current}})
+      }*/
+      if(payload.current*pageSize - pageSize < 29){
+        let data = imgList.slice(0, payload.current*pageSize)
+        yield put({type:'updateState',payload:{records:data, total:29, current:payload.current}})  
+      }else{
+        yield put({type:'updateState',payload:{hasMore: false}})  
+      }   
     },
   },
 

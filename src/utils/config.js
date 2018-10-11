@@ -15,5 +15,6 @@ module.exports = {
     login: `${API}/api1/login`,
     article: `${API}/api1/article`,
     article2: `${API}/api2/article`,
+    record: `${API}/api1/record`,
   },
 }

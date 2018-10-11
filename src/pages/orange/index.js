@@ -2,10 +2,10 @@ import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import PropTypes from 'prop-types';
 import styles from './index.less';
-import { Row, Col, Icon, Modal } from 'antd';
+import { Row, Col, Icon, Modal, BackTop } from 'antd';
 import Swiper from 'react-id-swiper';
 import 'swiper/dist/css/swiper.css';
-import LimitedInfiniteScroll from 'react-limited-infinite-scroll'
+import InfiniteScroll from "react-infinite-scroller";
 
 const Orange = ({ orange, dispatch }) => {
 
@@ -38,33 +38,29 @@ const Orange = ({ orange, dispatch }) => {
     dispatch({type:'orange/updateState',payload:{showImageUrl:url, modalVisible: true}})
   }
 
-  const loadNext = (page) => {
-    //dispatch({type:'orange/queryMore',payload:{page:page}}) 
-    console.log(page)
-    dispatch({type:'orange/updateState',payload:{page:page}}) 
+  const loadMore = (page) => {
+    dispatch({type:'orange/queryMore',payload:{current:orange.current+1}}) 
+    console.log(orange.current)
   }
 
   const scrollProps = {
-    limit: 5,
-    hasMore: true,
-    spinLoader: <div className="loader">Loading...</div>,
-    mannualLoader: <span style={{fontSize: 20, lineHeight: 1.5, marginTop: 20, marginBottom: 20, display: 'inline-block'}}>Load More</span>,
-    noMore: <div className="loader">No More Items</div>,
-    loadNext: (page)=>loadNext(page)
+    pageStart: 0,
+    hasMore: orange.hasMore,
+    loader: <div key='loader' style={{textAlign: 'center'}}><Icon type='loading'/></div>,
+    loadMore: (page)=>loadMore(page)    
   }
 
-  const renderItem = ()=> {
-      {orange.imgList.slice((orange.page-1)*orange.pageSize,(orange.page-1)*orange.pageSize + orange.pageSize).map((item, key)=>{
-        return  <div key={key}><img alt={key} src={item.url} style={{width:"300px"}}/><div>{item.title}</div></div>
-      })}
-  }
-
-  const squaredModel = () => {
-    return (
-      <div>
-        <LimitedInfiniteScroll {...scrollProps}>{renderItem()}</LimitedInfiniteScroll>
-      </div>
-    )
+  const renderItem = () => {
+    let items = []
+    items = orange.records.map((item, index)=>{
+      return (<Col key={index} span={8}>
+        <Row className={styles.single_item}>
+          <Col span={24}><img alt={index} src={item.url} style={{width:"100%"}}/></Col>
+          <Col span={24} className={styles.desc}>{item.title}</Col>
+        </Row>
+      </Col>)
+    })
+    return items
   }
 
   {/*const squaredMdoel = () => {
@@ -94,14 +90,15 @@ const Orange = ({ orange, dispatch }) => {
       <Row className={styles.orange} >
         <Col span={24} className={styles.btn}><Icon onClick={()=>changeLayoutModal()} type={orange.swiperModel === true?"appstore":"border"}/></Col>
         <Col span={24}>
-          { orange.swiperModel ? swiperModel() : squaredModel() }          
+          { orange.swiperModel ? swiperModel() : <InfiniteScroll {...scrollProps}><Row gutter={18}>{renderItem()}</Row></InfiniteScroll> }          
         </Col> 
         <Col span={24}>
           <Modal {...modalProps}>
-            <img src={orange.showImageUrl}/>
+            <img alt={orange.showImageUrl} src={orange.showImageUrl}/>
           </Modal>
         </Col>   
-      </Row>      
+      </Row>  
+      <BackTop />    
     </Fragment>
   );
 }
