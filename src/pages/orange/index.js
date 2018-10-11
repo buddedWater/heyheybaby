@@ -39,8 +39,7 @@ const Orange = ({ orange, dispatch }) => {
   }
 
   const loadMore = (page) => {
-    dispatch({type:'orange/queryMore',payload:{current:orange.current+1}}) 
-    console.log(orange.current)
+    dispatch({type:'orange/queryMore', payload:{current:orange.current+1}})
   }
 
   const scrollProps = {

@@ -4,7 +4,7 @@ const { api } = config
 
 export function getRecords ( params ) {
   return request({
-    url: api.record,
+    url: api.orange,
     method: 'get',
     data: params,
   });
