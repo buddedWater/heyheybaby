@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styles from './addModal.less';
+import styles from './addOrangeModal.less';
 import moment from 'moment';
 import { Row, Col, Input, Form, Modal, notification } from 'antd';
 
 const FormItem = Form.Item;
 const TextArea = Input.TextArea
 
-const AddModal = ({ addData, dispatch, form }) => {
+const AddOrangeModal = ({ addData, dispatch, form }) => {
 
   const modalProps = {
     title: addData.modalTitle,
@@ -90,30 +90,29 @@ const AddModal = ({ addData, dispatch, form }) => {
                   <Input />
                 )}
               </FormItem>
-              <FormItem {...formItemLayout} label="题目">
+              <FormItem {...formItemLayout} label="标题">
                 {form.getFieldDecorator('title', {
                   initialValue: addData.modifyData.title ? addData.modifyData.title : "",
-                  rules: [{ required: true, message: '请输入题目!' }],
+                  rules: [{ required: true, message: '请输入标题!' }],
                 })(
                   <Input />
                 )}
               </FormItem>
-              <FormItem {...formItemLayout} label="作者">
-                {form.getFieldDecorator('author', {
-                  initialValue: addData.modifyData.author ? addData.modifyData.author : "",
-                  rules: [{ required: true, message: '请输入作者!' }],
-                })(
-                  <Input />
-                )}
-              </FormItem>
-              <FormItem {...formItemLayout} label="内容">
-                {form.getFieldDecorator('text', {
-                  initialValue: addData.modifyData.text ? addData.modifyData.text : "",
+              <FormItem {...formItemLayout} label="图片链接">
+                {form.getFieldDecorator('url', {
+                  initialValue: addData.modifyData.url ? addData.modifyData.url : "",
                   rules: [{ required: true, message: '请输入内容!' }],
                 })(
-                  <TextArea rows={6}/>
+                  <Input />
                 )}
               </FormItem>
+              <FormItem {...formItemLayout} label="描述">
+                {form.getFieldDecorator('author', {
+                  initialValue: addData.modifyData.desc ? addData.modifyData.desc : "",
+                })(
+                  <Input />
+                )}
+              </FormItem>              
             </Form>
           </Modal>
         </Col>
@@ -122,10 +121,10 @@ const AddModal = ({ addData, dispatch, form }) => {
   );
 }
 
-AddModal.propTypes = {
+AddOrangeModal.propTypes = {
   addData: PropTypes.object,
   dispatch: PropTypes.func,
   form: PropTypes.object
 };
 
-export default Form.create()(AddModal)
+export default Form.create()(AddOrangeModal)

@@ -1,14 +1,13 @@
-import * as service from './service'
+import * as service from '../services/oranges'
 export default {
 
-  namespace: 'operate',
+  namespace: 'oranges',
 
   state: {
     dataSource: [],
-
-    columns: [{ title: '题目', dataIndex: 'title', key: 'title' }, 
-      { title: '作者', dataIndex: 'author', key: 'author' }, 
-      { title: '内容', dataIndex: 'text', key: 'text', width: 150 },
+    columns: [{ title: '标题', dataIndex: 'title', key: 'title' }, 
+      { title: '图片', dataIndex: 'url', key: 'url' }, 
+      { title: '描述', dataIndex: 'desc', key: 'desc' },
       { title: '创建时间', dataIndex: 'createTime', key: 'createTime', sorter: (a, b) => a.createTime - b.createTime },
       { title: '修改时间', dataIndex: 'modifyTime', key: 'modifyTime', sorter: (a, b) => a.modifyTime - b.modifyTime },
       { title: '操作', dataIndex: 'operate', key: 'operate' },
@@ -17,48 +16,50 @@ export default {
     current: 1,
     total: 4,
     modalVisible: false,
-    moalTitle: '',
+    modalTitle: '',
     modifyData: {},
     orderBy: 'modifyTime',
-    order: -1
+    order: -1,
+    fullVisible: false,
+    url:''
   },
 
   subscriptions: {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
         if(pathname === '/operate'){
-          dispatch({type:'query_article'})
+          dispatch({type:'query_orange'})
         }
       });
     },
   },
 
   effects: {
-    *query_article({ payload }, { call, put, select }) {
-      const { current, pageSize, orderBy, order } = yield select(_ => _.operate)
-      let data = yield call(service.getArticle, { current, pageSize, orderBy, order })
+    *query_orange({ payload }, { call, put, select }) {
+      const { current, pageSize, orderBy, order } = yield select(_ => _.article)
+      let data = yield call(service.getOrange, { current, pageSize, orderBy, order })
       if(data.code === 1){
         yield put({type:'updateState',payload:{dataSource:data.list.map((item, key)=>{item.key = key; return item}),total:data.total}})
       }
     },
     *add({ payload }, { call, put }) {
-      let data = yield call(service.addArticle, payload.values)
+      let data = yield call(service.addOrange, payload.values)
       if(data.code === 1){
-        yield put({type:'query_article'})
+        yield put({type:'query_orange'})
       }
       return data
     },
     *update({ payload }, { call, put }) {
-      let data = yield call(service.updateArticle, payload.values)
+      let data = yield call(service.updateOrange, payload.values)
       if(data.code === 1){
-        yield put({type:'query_article'})
+        yield put({type:'query_orange'})
       }
       return data
     },
     *delete({ payload }, { call, put }) {
-      let data = yield call(service.deleteArticle, payload)
+      let data = yield call(service.deleteOrange, payload)
       if(data.code === 1){
-        yield put({type:'query_article'})
+        yield put({type:'query_orange'})
       }
       return data
     },

@@ -14,7 +14,8 @@ module.exports = {
   api: {
     login: `${API}/api1/login`,
     article: `${API}/api1/article`,
-    article2: `${API}/api2/article`,
+    articleAuth: `${API}/api2/article`,
     orange: `${API}/api1/orange`,
+    orangeAuth: `${API}/api2/orange`,
   },
 }

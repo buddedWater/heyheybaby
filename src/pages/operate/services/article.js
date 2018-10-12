@@ -1,10 +1,10 @@
-import { request, config } from '../../utils';
+import { request, config } from '../../../utils';
 
 const { api } = config
 
 export function addArticle ( params ) {
   return request({
-    url: api.article2,
+    url: api.articleAuth,
     method: 'post',
     data: params,
   });
@@ -12,7 +12,7 @@ export function addArticle ( params ) {
 
 export function updateArticle ( params ) {
   return request({
-    url: api.article2,
+    url: api.articleAuth,
     method: 'put',
     data: params,
   });
@@ -20,7 +20,7 @@ export function updateArticle ( params ) {
 
 export function deleteArticle ( params ) {
   return request({
-    url: api.article2,
+    url: api.articleAuth,
     method: 'delete',
     data: params,
   });

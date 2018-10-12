@@ -6,6 +6,7 @@ import { Row, Col, Icon, Modal, BackTop } from 'antd';
 import Swiper from 'react-id-swiper';
 import 'swiper/dist/css/swiper.css';
 import InfiniteScroll from "react-infinite-scroller";
+import { FullPageImage } from '../../components'
 
 const Orange = ({ orange, dispatch }) => {
 
@@ -19,7 +20,7 @@ const Orange = ({ orange, dispatch }) => {
     }
   }
 
-  const changeLayoutModal = () => {
+  const changeLayoutModel = () => {
     dispatch({type:'orange/updateState',payload:{swiperModel:!orange.swiperModel}})
   }
 
@@ -54,7 +55,7 @@ const Orange = ({ orange, dispatch }) => {
     items = orange.records.map((item, index)=>{
       return (<Col key={index} span={8}>
         <Row className={styles.single_item}>
-          <Col span={24}><img alt={index} src={item.url} style={{width:"100%"}}/></Col>
+          <Col span={24}><img alt={index} src={item.url} onClick={()=>handleImageClick(item.url)} style={{width:"100%"}}/></Col>
           <Col span={24} className={styles.desc}>{item.title}</Col>
         </Row>
       </Col>)
@@ -73,30 +74,17 @@ const Orange = ({ orange, dispatch }) => {
     )
   }*/}
 
-  const onCancel = () => {
-    dispatch({type:'orange/updateState',payload:{modalVisible: false}})
-  }
-
-  const modalProps = {
-    visible: orange.modalVisible,
-    footer: null,
-    width: 700,
-    onCancel: ()=>onCancel()
-  }
-
   return (    
     <Fragment>
       <Row className={styles.orange} >
-        <Col span={24} className={styles.btn}><Icon onClick={()=>changeLayoutModal()} type={orange.swiperModel === true?"appstore":"border"}/></Col>
+        <Col span={24} className={styles.btn}><Icon onClick={()=>changeLayoutModel()} type={orange.swiperModel === true?"appstore":"border"}/></Col>
         <Col span={24}>
           { orange.swiperModel ? swiperModel() : <InfiniteScroll {...scrollProps}><Row gutter={18}>{renderItem()}</Row></InfiniteScroll> }          
         </Col> 
         <Col span={24}>
-          <Modal {...modalProps}>
-            <img alt={orange.showImageUrl} src={orange.showImageUrl}/>
-          </Modal>
-        </Col>   
-      </Row>  
+          <FullPageImage visible={orange.modalVisible} url={orange.showImageUrl}/> 
+        </Col>
+      </Row>      
       <BackTop />    
     </Fragment>
   );
