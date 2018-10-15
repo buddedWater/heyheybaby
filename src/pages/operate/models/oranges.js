@@ -45,21 +45,21 @@ export default {
     *add({ payload }, { call, put }) {
       let data = yield call(service.addOrange, payload.values)
       if(data.code === 1){
-        yield put({type:'query_orange'})
+        yield put({type:'query_oranges'})
       }
       return data
     },
     *update({ payload }, { call, put }) {
       let data = yield call(service.updateOrange, payload.values)
       if(data.code === 1){
-        yield put({type:'query_orange'})
+        yield put({type:'query_oranges'})
       }
       return data
     },
     *delete({ payload }, { call, put }) {
       let data = yield call(service.deleteOrange, payload)
       if(data.code === 1){
-        yield put({type:'query_orange'})
+        yield put({type:'query_oranges'})
       }
       return data
     },
