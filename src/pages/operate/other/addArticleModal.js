@@ -7,7 +7,7 @@ import { Row, Col, Input, Form, Modal, notification } from 'antd';
 const FormItem = Form.Item;
 const TextArea = Input.TextArea
 
-const AddArticleModal = ({ addData, dispatch, form }) => {
+const AddArticleModal = ({ addData, form }) => {
 
   const modalProps = {
     title: addData.modalTitle,
@@ -33,7 +33,7 @@ const AddArticleModal = ({ addData, dispatch, form }) => {
   const handleSubmit = (values) => {
     if(values._id){
       values.modifyTime = moment().format('YYYY-MM-DD HH:mm:ss')
-      addData.dispatch({type:"operate/update", payload:{values}}).then((data)=>{
+      addData.dispatch({type:"article/update", payload:{values}}).then((data)=>{
         if(data.code === 1){
           onCancel();
           notification['success']({
@@ -50,7 +50,7 @@ const AddArticleModal = ({ addData, dispatch, form }) => {
       delete values['_id']
       values.createTime = moment().format('YYYY-MM-DD HH:mm:ss')
       values.modifyTime = moment().format('YYYY-MM-DD HH:mm:ss')
-      addData.dispatch({type:"operate/add", payload:{values}}).then((data)=>{
+      addData.dispatch({type:"article/add", payload:{values}}).then((data)=>{
         if(data.code === 1){
           onCancel();
           notification['success']({

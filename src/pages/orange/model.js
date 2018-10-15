@@ -4,7 +4,7 @@ export default {
   namespace: 'orange',
 
   state: {
-    imgList: [{url:"http://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180412_aerping.jpg",title:"2018-04-12 在阿尔平坠落现场"},
+    imgList: [/*{url:"http://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180412_aerping.jpg",title:"2018-04-12 在阿尔平坠落现场"},
       {url:"https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180430_ktv.jpg",title:"2018-04-30 在KTV倾情歌唱"},
       {url:"https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180630_wenyilu.jpg",title:"2018-06-30 文艺路上与父亲电话对谈"},
       {url:'https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180907_zhaoze.jpg',title:"2018-09-07 在沼泽现场和BBF席地而坐"},
@@ -32,7 +32,7 @@ export default {
       {url:"http://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180412_aerping.jpg",title:"2018-04-12 在阿尔平坠落现场21"},
       {url:"https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180430_ktv.jpg",title:"2018-04-30 在KTV倾情歌唱22"},
       {url:"https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180630_wenyilu.jpg",title:"2018-06-30 文艺路上与父亲电话对谈23"},
-      {url:'https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180907_zhaoze.jpg',title:"2018-09-07 在沼泽现场和BBF席地而坐24"},
+      {url:'https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_img/180907_zhaoze.jpg',title:"2018-09-07 在沼泽现场和BBF席地而坐24"},*/
     ],
     records: [],
     swiperModel: true,
@@ -46,12 +46,20 @@ export default {
 
   subscriptions: {
     setup({ dispatch, history }) {
+       return history.listen(({ pathname, search }) => {
+        if(pathname === '/orange'){
+          dispatch({type:'query', payload:{current:1}})
+        }
+      });
     },
   },
 
   effects: {
-    *fetch({ payload }, { call, put }) {
-      yield put({ type: 'save' });
+    *query({ payload }, { call, put }) {
+      let data = yield call(service.getRecords, {current:payload.current, pageSize: 1000})
+      if(data.code === 1){
+        yield put({type:'updateState',payload:{imgList:data.list, total:data.total, current:payload.current}})
+      }
     },
     *queryMore({ payload }, { call, put, select }) {
       const { pageSize, imgList } = yield select(_ => _.orange)

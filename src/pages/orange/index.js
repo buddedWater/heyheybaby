@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import PropTypes from 'prop-types';
 import styles from './index.less';
-import { Row, Col, Icon, Modal, BackTop } from 'antd';
+import { Row, Col, Icon, BackTop } from 'antd';
 import Swiper from 'react-id-swiper';
 import 'swiper/dist/css/swiper.css';
 import InfiniteScroll from "react-infinite-scroller";
@@ -14,6 +14,8 @@ const Orange = ({ orange, dispatch }) => {
     slidesPerView: 1.5,
     spaceBetween: 30,
     freeMode: true,
+    lazy: true,
+    rebuildOnUpdate: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
@@ -21,18 +23,18 @@ const Orange = ({ orange, dispatch }) => {
   }
 
   const changeLayoutModel = () => {
-    dispatch({type:'orange/updateState',payload:{swiperModel:!orange.swiperModel}})
+   // dispatch({type:'orange/updateState',payload:{swiperModel:!orange.swiperModel}})
   }
 
   const swiperModel = () => {
-    return (
-      <Swiper {...swiperProps} >
+    let node = orange.imgList?
+      (<Swiper {...swiperProps} >
         {orange.imgList.map((item ,key)=>{
          return (<div key={key} className={styles.single_item}><img alt={key} src={item.url}/>
           <div className={styles.desc} title={item.title}>{item.title}</div></div>)
         })}
-      </Swiper>
-    )
+      </Swiper>):null
+    return node
   }
 
   const handleImageClick = (url) => {
@@ -63,16 +65,15 @@ const Orange = ({ orange, dispatch }) => {
     return items
   }
 
-  {/*const squaredMdoel = () => {
-    return (
-      <Row gutter={18}>
-        {orange.imgList.map((item ,key)=>{
-         return (<Col span={8} key={key} className={styles.single_item}><img alt={key} onClick={()=>handleImageClick(item.url)} src={item.url}/>
-          <div className={styles.desc} title={item.title}>{item.title}</div></Col>)
-        })}
-      </Row>
-    )
-  }*/}
+  const handleCancel = () => {
+    dispatch({type:'orange/updateState',payload:{showImageUrl:"", modalVisible: false}})
+  }
+
+  const fullPageData = {
+    visible: orange.modalVisible,
+    url: orange.showImageUrl,
+    handleCancel: ()=>handleCancel(),
+  }
 
   return (    
     <Fragment>
@@ -82,7 +83,7 @@ const Orange = ({ orange, dispatch }) => {
           { orange.swiperModel ? swiperModel() : <InfiniteScroll {...scrollProps}><Row gutter={18}>{renderItem()}</Row></InfiniteScroll> }          
         </Col> 
         <Col span={24}>
-          <FullPageImage visible={orange.modalVisible} url={orange.showImageUrl}/> 
+          <FullPageImage {...fullPageData}/> 
         </Col>
       </Row>      
       <BackTop />    

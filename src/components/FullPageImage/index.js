@@ -4,26 +4,17 @@ import { Modal, Row, Col } from 'antd'
 import './index.less'
 
 class FullPageImage extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      url: props.url,
-      visible: props.visible
-    }    
-  }
+/*  constructor (props) {
+    super(props) 
+  }*/
 
   onCancel () {
-    this.setState({
-      visible: false,
-    })
+    this.props.handleCancel()
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-      this.setState({...nextProps});
-  }
 
   render () {
-    const { visible, url } = this.state
+    const { visible, url } = this.props
     const modalProps = {
       visible: visible,
       footer: null,

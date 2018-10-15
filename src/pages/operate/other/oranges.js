@@ -74,6 +74,16 @@ const Oranges = ({ oranges, dispatch }) => {
     dispatch
   }
 
+  const fullPageData = {
+    visible: oranges.fullVisible,
+    url: oranges.url,
+    handleCancel: ()=>handleCancel(),
+  }
+
+  const handleCancel = () => {
+    dispatch({type:"oranges/updateState", payload:{fullVisible:false, url:""}})
+  }
+
   return (    
     <Fragment>
       <Row className={styles.oranges}>
@@ -85,7 +95,7 @@ const Oranges = ({ oranges, dispatch }) => {
         </Col>
       </Row>
       <AddOrangeModal addData={addData}/>
-      <FullPageImage visible={oranges.fullVisible} url={oranges.url}/>
+      <FullPageImage {...fullPageData}/>
     </Fragment>
   );
 }
