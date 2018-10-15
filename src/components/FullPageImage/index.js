@@ -4,14 +4,10 @@ import { Modal, Row, Col } from 'antd'
 import './index.less'
 
 class FullPageImage extends React.Component {
-/*  constructor (props) {
-    super(props) 
-  }*/
 
   onCancel () {
     this.props.handleCancel()
   }
-
 
   render () {
     const { visible, url } = this.props

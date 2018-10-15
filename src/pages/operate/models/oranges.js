@@ -28,14 +28,14 @@ export default {
     setup({ dispatch, history }) {
       return history.listen(({ pathname, search }) => {
         if(pathname === '/operate'){
-          dispatch({type:'query_orange'})
+          dispatch({type:'query_oranges'})
         }
       });
     },
   },
 
   effects: {
-    *query_orange({ payload }, { call, put, select }) {
+    *query_oranges({ payload }, { call, put, select }) {
       const { current, pageSize, orderBy, order } = yield select(_ => _.article)
       let data = yield call(service.getOrange, { current, pageSize, orderBy, order })
       if(data.code === 1){
