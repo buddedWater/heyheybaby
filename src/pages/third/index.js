@@ -2,8 +2,9 @@ import React, { Fragment } from 'react';
 import { connect } from 'dva';
 import PropTypes from 'prop-types';
 import styles from './index.less';
-import { Row, Col, Divider } from 'antd';
-import wait from '../../assets/thirdImage/wait.jpg';
+import { Row, Col } from 'antd';
+import { Player } from 'video-react';
+import "../../../node_modules/video-react/dist/video-react.css";
 
 const Third = ({ third, dispatch }) => {
 
@@ -11,8 +12,9 @@ const Third = ({ third, dispatch }) => {
     <Fragment>
       <Row className={styles.third} type="flex" align="middle">
       	<Col span={24} className={styles.wait}>
-          <span>敬请期待<Divider type="vertical"/>请期待<Divider type="vertical"/>期待<Divider type="vertical"/>待</span>   
-          <img src={wait} alt="wait!" style={{width:'100%'}}/>  
+          <Player>
+            <source src="https://heyheybaby.oss-cn-beijing.aliyuncs.com/baby_video/tianqiao.mp4" />
+          </Player>
         </Col>    
       </Row>
     </Fragment>

@@ -36,7 +36,7 @@ export default {
 
   effects: {
     *query_oranges({ payload }, { call, put, select }) {
-      const { current, pageSize, orderBy, order } = yield select(_ => _.article)
+      const { current, pageSize, orderBy, order } = yield select(_ => _.oranges)
       let data = yield call(service.getOrange, { current, pageSize, orderBy, order })
       if(data.code === 1){
         yield put({type:'updateState',payload:{dataSource:data.list.map((item, key)=>{item.key = key; return item}),total:data.total}})
